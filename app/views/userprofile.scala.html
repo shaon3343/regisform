@@ -1,0 +1,26 @@
+ @(ppl: List[models.People])
+
+@main("User Profile"){
+ 
+ @for(p <- ppl) {
+ <form class="cmxForm" action="@routes.CreatePDF.createPDFfromString(p.name,p.email,p.password,p.occupation,p.mobile,p.address)"  method="POST">
+	
+	<h4> Name: @p.name </h4>
+	<h4> Email: @p.email</h4>
+	<h4> Occupation : @p.occupation </h4>
+	<h4> Mobile: @p.mobile </h4>
+	<h4> Address: @p.address </h4>
+	
+    	
+    	<p><button type="submit"> Create PDF </button></p>
+    	
+    </form>
+    
+    
+     <form action="@routes.CreateSpreadsheet.doSpreadsheet(p.id)"  method="POST">
+	
+    	<p><button type="submit"> Create Spreadsheet </button></p>
+    	
+    </form>
+    }
+}

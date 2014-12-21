@@ -1,0 +1,76 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/screen.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/cmxform.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/jquery.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/jquery.validate.js")" type="text/javascript"></script>
+        
+       <!--   <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script> -->
+  
+        
+        
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/jquery-ui.css")">
+        <script src="@routes.Assets.at("javascripts/jquery-ui.js")" type="text/javascript"></script>
+     
+      <script>
+        $().ready(function() {
+	// validate the comment form when it is submitted
+			$("#commentForm").validate();
+			$( "#from").datepicker({ dateFormat: 'yy-mm-dd' });
+		    $( "#to").datepicker({ dateFormat: 'yy-mm-dd'});
+			  
+			
+        });
+        function getinput(){
+        	$("#commentForm").validate();
+			var x=document.getElementById("cemail");
+			var y=document.getElementById("password");
+			
+		//	var mail=document.forms["commentForm"]["cemail"];
+	//		var pass=document.forms["commentForm"]["password"];
+			  
+			//if(!x.value || !y.value)
+			if(!x.value || !y.value)
+			{
+				$("#errReport").html("<h3>Please Fill up both fields</h3>");
+				  $("#errReport").fadeIn(2000);
+				  $("#errReport").fadeOut();
+				  return false;
+				
+			}else
+			 
+				  $.post("http://localhost:9000/login",{email:x.value,password:y.value},function(result){
+				  if(result=="Invalid")
+					  {
+					  $("#errReport").html("<h3>INVALID USERNAME AND/OR PASSWORD</h3>");
+					  $("#errReport").fadeIn(2000);
+					  $("#errReport").fadeOut();
+					  return false;
+					}
+				  else{
+					  document.getElementById("errReport").innerHTML="";
+					  document.body.innerHTML=result;
+					  
+				  }
+					  
+				  }); 
+			
+			  return true;
+        }
+        
+	</script>
+    </head>
+    <body>
+        @content
+    </body>
+</html>

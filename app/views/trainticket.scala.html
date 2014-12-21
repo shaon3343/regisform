@@ -1,0 +1,58 @@
+@import helper._
+@main("registration form"){
+
+
+<div id="main">
+<form class="cmxform" id="commentForm"  method="POST" action="https://www.esheba.cnsbd.com/ajax/searchtckt" style="width:500px"  enctype="multipart/form-data">
+<fieldset>
+<legend><h1>User Registration: </h1></legend>
+   
+
+  <p>
+	<label for="name">Train No:</label>  
+  	<input type="number" name="trn_no" id="trn_no" value=742/>
+  </p>
+
+   <p>
+   	   <label for="email">Station From</label>
+       <input type="text" name="stn_from" id="stn_from" value="DA">
+   </p>
+    <p>
+   	   <label for="email">Station To</label>
+       <input type="text" name="stn_to" id="stn_to" value="CTG">
+   </p>
+   
+    <p>
+    	<label for="occupation">CLASS:</label>
+    	 <input type="text" name="trn_class" id="trn_class" value="s_chair"/>
+    </p>
+    <p> 
+    	<label for="mobile">ADULT </label>
+    	<input type="number" name="adult" id="adult" value=1/>
+    </p>
+    
+    <p> 
+    	<label for="address">CHILD:</label>
+    	<input type="number" name="child" id="child" value=0/>
+    	
+    </p>
+    
+    <p> 
+    	<label for="address">Journey date:</label>
+    	<input type="text" name="j_date" id="j_date" value="20-07-2014"/>
+    	
+    </p>
+ <!--   <input type="file" name="picture" accept="image/png">  --> 
+    <p>
+    <input type="submit" value="SEARCH"/>
+    </p>
+    
+    </fieldset>
+</form>
+
+
+</div>
+}
+
+
+

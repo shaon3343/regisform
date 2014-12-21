@@ -1,0 +1,45 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index()
+# Sign Up From 
+GET     /signup		controllers.Application.signup()
+
+GET		/register		controllers.Application.create()
+
+POST    /register       controllers.Application.register()
+
+GET 	/searchticket	 controllers.Application.searchTicket()
+
+
+#Login Form
+
+GET		/login		controllers.Application.loginForm()
+
+POST		/login		controllers.Application.loginWithEmailPass()
+
+GET		/showall		controllers.Application.showAllPeople()
+
+GET		/all		controllers.Application.reorder(orderby: String ?="")
+
+POST	/filterdate		controllers.Application.filterbydate()
+
+
+#POST		/create-pdf		controllers.CreatePDF.createPDFfromString(email: String ?="", password: String ?="")
+POST		/create-pdf		controllers.CreatePDF.createPDFfromString(name: String ?="",email: String ?="", password: String ?="", occupation: String ?="", mobile: String ?="", address: String ?="")
+
+POST		/create-spreadsheet		controllers.CreateSpreadsheet.doSpreadsheet(id: Long ?=0)
+
+#POST		/upload			controllers.Application.upload()
+
+# profile list (look at the default values for pagination parameters)
+GET     /profile                  controllers.Application.profile(p:Int ?= 0, s ?= "email", o ?= "asc", f ?= "")
+
+# process
+GET	   /signup/process/ 	controllers.Application.process()
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

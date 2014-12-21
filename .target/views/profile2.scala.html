@@ -1,0 +1,11 @@
+ @(peoplelist: List[People])
+ @import helper._
+
+ 
+ @for(people <- peoplelist){
+    <div class="gesture-item">
+        <h2>Email: @people.email</h2>
+        <p>Password: @people.password</p>
+        
+    </div>
+}

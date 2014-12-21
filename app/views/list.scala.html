@@ -1,0 +1,96 @@
+@(p: List[models.People])
+
+
+@main("List OF total user"){
+<h1> LIST OF ALL THE PEOPLES living life in PEACE.... :</h1>	
+<style>
+
+table
+{
+width:60%;
+border:1px solid black;
+border-collapse:collapse
+}
+td{
+	border:1px solid #d4d4d4;
+	padding:5px;
+	padding-top:7px;
+	padding-bottom:7px;
+	vertical-align:top;
+
+}
+th
+{
+color: #ffffff;
+background-color: #555555;
+border: 1px solid #555555;
+padding: 3px;
+vertical-align: top;
+text-align: left;
+}
+input.date {
+	width: 150px;
+	color: #000;
+}
+</style>
+
+<script>
+
+function show(){
+	var to=document.getElementById("to").value;
+	var from=document.getElementById("from").value;
+	alert(to);
+	
+	$.post("http://localhost:9000/filterdate",{from:from,to:to},function(result){
+		  if(result=="success")
+			  {
+			  $("#errReport").html("<h3>Invalid </h3>");
+			  $("#errReport").fadeIn(2000);
+			  $("#errReport").fadeOut();
+			  return false;
+			}
+		  else{
+			  document.getElementById("errReport").innerHTML="";
+			  document.body.innerHTML=result;
+			  
+		  }
+			  
+		  }); 
+	
+	
+}
+</script>
+
+	<table>
+	<tr>
+	<th><a  href="@routes.Application.reorder("name")" > Name</a></th>
+	<th><a href="@routes.Application.reorder("email")" > Email</a></th>
+	<th id="occupation" ><a id="oc" href="#" >Occupation</a></th>
+	<th>Mobile </th>
+	<th>Address</th>
+	<th>Registration Date </th>
+	</tr>
+	
+	@for(people <- p){
+	<tr>	 
+		<td>@people.name </td>
+		<td>@people.email </td>
+		<td>@people.occupation </td>
+		<td>@people.mobile </td>
+		<td>@people.address </td>
+		<td> @people.registerdate </td>
+	</tr>
+	}
+	
+	</table>
+	Search People by Registration date:
+	<form id="searchform" name="searchform" method="POST" action="http://localhost:9000/filterdate"> 
+	<input type="text" name="from" id="from"/>
+	<input type="text" name="to" id="to"/>
+<!-- 	<label onclick="show()" > filter by registration date </label> -->
+	<input type="submit" name="submit" value="SEARCH" />
+	
+	 </form> 
+	<div id="errReport"></div>
+}
+

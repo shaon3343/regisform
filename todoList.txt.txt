@@ -1,0 +1,17 @@
+
+List.render at Application Controller , It should be included in view as list.scala.html to design the view of 
+all the listing . 
+
+now people Profile  listings should be displayed in a list page . 
+
+
+http://www.ibm.com/developerworks/java/library/os-javapdf/index.html?ca=dat
+
+Found the solution: return ok(new FileInputStream("pdfs/doc.pdf")).as("application/pdf");
+
+Next to do is Routing . Have to call that method in controller CreatePDF  from within view  Userprofile.scala.html 
+Passing values from that view and then it will be downloaded as pDF 
+
+http://www.playframework.com/documentation/2.0/ScalaRouting
+
+http://stackoverflow.com/questions/15639323/method-parameter-passing-from-view-to-controller-play-framework
